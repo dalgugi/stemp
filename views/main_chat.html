@@ -79,9 +79,9 @@
 			<div class="chat-list">
 				<ul>
 					<li>
-						<div>
+						<div onclick="chatListCtr(this)">
 							<span>공식 대화목록</span>
-							<i class="fas fa-caret-down"></i>
+							<i class="fas fa-caret-up"></i>
 						</div>
 						<ul>
 							<li>개발1팀</li>
@@ -94,9 +94,9 @@
 						</ul>
 					</li>
 					<li>
-						<div>
+						<div onclick="chatListCtr(this)">
 							<span>비공식 대화목록</span>
-							<i class="fas fa-caret-down"></i>
+							<i class="fas fa-caret-up"></i>
 						</div>
 						<ul>
 							<li>김가필드</li>
@@ -153,6 +153,21 @@
 			const inviteBtn   = document.getElementsByClassName("member-invite-btn")[0];
 			const inviteModal = document.getElementById("member-invite-modal");
 
+
+			// 왼쪽 채팅 리스트 접기/펼치기
+			function chatListCtr(element) {
+				let chatList = element.nextSibling.nextSibling;
+
+				if(chatList.classList.contains("hidden")) {
+					element.getElementsByTagName("i")[0].classList.add("fa-caret-up");
+					element.getElementsByTagName("i")[0].classList.remove("fa-caret-down");
+					chatList.classList.remove("hidden");
+				} else {
+					element.getElementsByTagName("i")[0].classList.add("fa-caret-down");
+					element.getElementsByTagName("i")[0].classList.remove("fa-caret-up");
+					chatList.classList.add("hidden");
+				};
+			};
 
 			// 오른쪽 사이드메뉴 보이기/감추기
 			menuBtn.onclick = function() {
