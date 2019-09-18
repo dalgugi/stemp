@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>S'Temp</title>
+		<link href="../public/stylesheets/reset.css" rel="stylesheet" type="text/css"/>
+		<link href="../public/icons/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css" rel="stylesheet"/>
+		<style type="text/css">
+			header								{width:100%; height:50px; background-color:#41b4c3;}
+			nav									{position:absolute; display:inline-block; width:270px; height:calc(100% - 50px); background-color:#268c9a;}
+			aside								{position:absolute; right:0; width:360px; height:calc(100% - 50px); background-color:#268c9a;}
+
+			.logo-area							{display:inline-block; padding-right:15px; margin-left:15px; line-height:50px; cursor:pointer;}
+			.logo-area .logo-icon				{padding-right:10px; height:40px; vertical-align:middle;}
+			.logo-area .logo-txt				{height:25px; vertical-align:middle;}
+
+			.profile-area						{float:right; line-height:50px;}
+			.profile-area > div					{display:inline-block; line-height:50px; cursor:pointer;}
+			.profile-area > div .user-name		{display:inline-block; padding-left:2px; height:100%; vertical-align:middle; font-size:1.5em; color:#ffffff;}
+			.profile-area > div .profile		{height:35px; vertical-align:middle; border-radius:50px;}
+			.profile-area > div .menu-dot		{margin:0 15px 0 8px; width:25px;}
+
+			nav > *								{color:rgba(199, 223, 226, 0.9); cursor:pointer;}
+			nav .team-title						{padding:20px 15px 10px;}
+			nav .team-title span				{font-size:20px; color:#ffffff;}
+			nav .team-title div					{display:inline-block; float:right;}
+			nav .team-title div button			{height:23px; border:none; color:rgba(199, 223, 226, 0.9); background:none; cursor:pointer;}
+
+			nav .chat-list *					{font-size:16px;}
+			nav .chat-list ul ul li				{padding:5px 0 5px 40px;}
+			nav .chat-list ul ul li:hover		{background-color:rgba(25, 85, 95, 0.7);}
+			nav .chat-list ul ul li:last-child 	{color:rgba(220, 237, 239, 0.3);}
+			nav .chat-list ul ul li i			{margin-right:5px;}
+			nav .chat-list > ul div				{padding:10px 0 10px 15px;}
+			nav .chat-list > ul div:hover		{color:#ffffff;}
+
+			.hidden 							{display:none;}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="logo-area">
+				<img src="../public/images/logo_small.png" class="logo-icon" alt="logo"/>
+				<img src="../public/images/logo_text.png" class="logo-txt" alt="title"/>
+			</div>
+			<div class="profile-area">
+				<div class="profile-inside-area">
+					<img src="../public/images/profile_yj.jpg" class="profile" alt="profile"/>
+					<span class="user-name">오윤주</span>
+				</div>
+				<div class="menu-dot-area">
+					<img src="../public/images/menu_three_dot_icon.png" class="menu-dot" alt="menu"/>
+				</div>
+			</div>
+		</header>
+		<nav>
+			<div class="team-title">
+				<span>Temp Team</span>
+				<div>
+					<button type="button" class="member-invite-btn"><i class="fas fa-user-plus"></i></button>
+					<button type="button" class="team-setting-btn"><i class="fas fa-cog"></i></button>
+				</div>
+			</div>
+			<div class="chat-list">
+				<ul>
+					<li>
+						<div>
+							<span>공식 대화목록</span>
+							<i class="fas fa-caret-down"></i>
+						</div>
+						<ul>
+							<li>개발1팀</li>
+							<li>개발2팀</li>
+							<li>디자인팀</li>
+							<li>기획팀</li>
+							<li>컨텐츠팀</li>
+							<li>인사관리팀</li>
+							<li><i class="fas fa-plus"></i>대화 추가하기</li>
+						</ul>
+					</li>
+					<li>
+						<div>
+							<span>비공식 대화목록</span>
+							<i class="fas fa-caret-down"></i>
+						</div>
+						<ul>
+							<li>김가필드</li>
+							<li>박와조스키</li>
+							<li>안보헤미안</li>
+							<li>놈팽이팸</li>
+							<li><i class="fas fa-plus"></i>대화 추가하기</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<aside class="hidden">
+		</aside>
+
+		<script type="text/javascript">
+
+			const menuBtn      = document.getElementsByClassName("menu-dot-area")[0];
+			const menuCloseBtn = document.getElementsByClassName("menu-close-btn")[0];
+			const aside        = document.getElementsByTagName("aside")[0];
+
+			// 오른쪽 사이드메뉴 보이기/감추기
+			menuBtn.onclick = function() {
+				if(aside.classList.contains("hidden")) {
+					aside.classList.remove("hidden");
+					menuCloseBtn.classList.remove("hidden");
+				} else {
+					aside.classList.add("hidden");
+				};
+			};
+
+		</script>
+	</body>
+</html>
