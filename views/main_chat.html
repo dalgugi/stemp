@@ -34,6 +34,11 @@
 			nav .chat-list > ul div				{padding:10px 0 10px 15px;}
 			nav .chat-list > ul div:hover		{color:#ffffff;}
 
+			aside .tab-menu						{width:100%;}
+			aside .tab-menu span				{display:inline-block; float:left; width:25%; height:40px; box-sizing:border-box; border:1px solid #268c9a; line-height:44px; text-align:center;}
+			aside .tab-menu span:not(.active)	{background-color:#41b4c3;}
+			aside .tab-menu span i				{color:rgba(199, 223, 226, 0.9); font-size:22px;}
+
 			.hidden 							{display:none;}
 
 			/* modal */
@@ -105,6 +110,12 @@
 			</div>
 		</nav>
 		<aside class="hidden">
+			<div class="tab-menu">
+				<span class="active" onclick="addActive(this)"><i class="fas fa-clipboard-check"></i></span>
+				<span onclick="addActive(this)"><i class="fas fa-paperclip"></i></span>
+				<span onclick="addActive(this)"><i class="fas fa-at"></i></span>
+				<span onclick="addActive(this)"><i class="fas fa-star"></i></span>
+			</div>
 		</aside>
 
 		<!-- 개인 정보 설정 modal -->
@@ -130,6 +141,8 @@
 			const menuBtn      = document.getElementsByClassName("menu-dot-area")[0];
 			const menuCloseBtn = document.getElementsByClassName("menu-close-btn")[0];
 			const aside        = document.getElementsByTagName("aside")[0];
+			const tabMenu	   = document.getElementsByClassName("tab-menu")[0];
+			const tabMenuSpan  = tabMenu.getElementsByTagName("span");
 
 			const profile = document.getElementsByClassName("profile-inside-area")[0];
 			const myModal = document.getElementById("my-modal");
@@ -145,10 +158,15 @@
 			menuBtn.onclick = function() {
 				if(aside.classList.contains("hidden")) {
 					aside.classList.remove("hidden");
-					menuCloseBtn.classList.remove("hidden");
 				} else {
 					aside.classList.add("hidden");
 				};
+			};
+
+			// 오른쪽 사이드메뉴 탭 클릭했을 때
+			function addActive(element) {
+				tabMenu.getElementsByClassName("active")[0].classList.remove("active");
+				element.classList.add("active");
 			};
 
 			// 개인 정보 설정 모달 보이기
