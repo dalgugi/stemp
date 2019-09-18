@@ -35,6 +35,16 @@
 			nav .chat-list > ul div:hover		{color:#ffffff;}
 
 			.hidden 							{display:none;}
+
+			/* modal */
+			.modal								{position:fixed; top:0; left:0; padding-top:100px; width:100%; height:100%; overflow:auto; z-index:1; background-color:rgba(0, 0, 0, 0.6);}
+			.modal-content						{margin:0 auto; width:700px; background-color:#E3F0F2; border-radius:10px;}
+			/* ----개인 정보 설정 */
+			#my-modal-content					{height:700px;}
+			/* ----팀 설정 */
+			#team-modal-content					{height:400px;}
+			/* ---- 팀 멤버 초대 */
+			#member-invite-modal-content		{height:700px;}
 		</style>
 	</head>
 	<body>
@@ -97,11 +107,39 @@
 		<aside class="hidden">
 		</aside>
 
+		<!-- 개인 정보 설정 modal -->
+		<div id="my-modal" class="modal hidden">
+			<div id="my-modal-content" class="modal-content">
+			</div>
+		</div>
+
+		<!-- 팀 설정 modal -->
+		<div id="team-modal" class="modal hidden">
+			<div id="team-modal-content" class="modal-content">
+			</div>
+		</div>
+
+		<!-- 팀 멤버 초대 modal -->
+		<div id="member-invite-modal" class="modal hidden">
+			<div id="member-invite-modal-content" class="modal-content">
+			</div>
+		</div>
+
 		<script type="text/javascript">
 
 			const menuBtn      = document.getElementsByClassName("menu-dot-area")[0];
 			const menuCloseBtn = document.getElementsByClassName("menu-close-btn")[0];
 			const aside        = document.getElementsByTagName("aside")[0];
+
+			const profile = document.getElementsByClassName("profile-inside-area")[0];
+			const myModal = document.getElementById("my-modal");
+
+			const teamBtn   = document.getElementsByClassName("team-setting-btn")[0];
+			const teamModal = document.getElementById("team-modal");
+
+			const inviteBtn   = document.getElementsByClassName("member-invite-btn")[0];
+			const inviteModal = document.getElementById("member-invite-modal");
+
 
 			// 오른쪽 사이드메뉴 보이기/감추기
 			menuBtn.onclick = function() {
@@ -110,6 +148,32 @@
 					menuCloseBtn.classList.remove("hidden");
 				} else {
 					aside.classList.add("hidden");
+				};
+			};
+
+			// 개인 정보 설정 모달 보이기
+			profile.onclick = function() {
+				myModal.classList.remove("hidden");
+			};
+
+			// 팀 설정 모달 보이기
+			teamBtn.onclick = function() {
+				teamModal.classList.remove("hidden");
+			};
+
+			// 팀 멤버 초대 모달 보이기
+			inviteBtn.onclick = function() {
+				inviteModal.classList.remove("hidden");
+			};
+
+			// 모달 감추기
+			window.onclick = function(e) {
+				if (e.target === myModal) {
+					myModal.classList.add("hidden");
+				} else if (e.target === teamModal) {
+					teamModal.classList.add("hidden");
+				} else if(e.target === inviteModal) {
+					inviteModal.classList.add("hidden");
 				};
 			};
 
