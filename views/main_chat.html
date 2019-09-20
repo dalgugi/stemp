@@ -10,24 +10,27 @@
 			nav									{position:absolute; display:inline-block; width:270px; height:calc(100% - 50px); background-color:#268c9a;}
 			aside								{position:absolute; right:0; width:360px; height:calc(100% - 50px); background-color:#268c9a;}
 
+			@font-face 							{font-family:"DungGeunMo"; src:url("../public/fonts/DungGeunMo.woff");}
+			.dung-geunmo						{font-family:"DungGeunMo", serif;}
+
 			.logo-area							{display:inline-block; padding-right:15px; margin-left:15px; line-height:50px; cursor:pointer;}
 			.logo-area .logo-icon				{padding-right:10px; height:40px; vertical-align:middle;}
 			.logo-area .logo-txt				{height:25px; vertical-align:middle;}
 
 			.profile-area						{float:right; line-height:50px;}
 			.profile-area > div					{display:inline-block; line-height:50px; cursor:pointer;}
-			.profile-area > div .user-name		{display:inline-block; padding-left:2px; height:100%; vertical-align:middle; font-size:1.5em; color:#ffffff;}
+			.profile-area > div .user-name		{display:inline-block; padding-left:2px; height:100%; vertical-align:middle; font-size:20px; color:#ffffff;}
 			.profile-area > div .profile		{height:35px; vertical-align:middle; border-radius:50px;}
 			.profile-area > div .menu-dot		{margin:0 15px 0 8px; width:25px;}
 
 			nav > *								{color:rgba(199, 223, 226, 0.9); cursor:pointer;}
 			nav .team-title						{padding:20px 15px 10px;}
-			nav .team-title span				{font-size:20px; color:#ffffff;}
+			nav .team-title span				{font-size:24px; color:#ffffff;}
 			nav .team-title div					{display:inline-block; float:right;}
-			nav .team-title div button			{height:23px; border:none; color:rgba(199, 223, 226, 0.9); background:none; cursor:pointer;}
+			nav .team-title div button			{height:25px; border:none; color:rgba(199, 223, 226, 0.9); background:none; cursor:pointer;}
 
-			nav .chat-list *					{font-size:16px;}
-			nav .chat-list ul ul li				{padding:5px 0 5px 40px;}
+			nav .chat-list *					{font-size:17px;}
+			nav .chat-list ul ul li				{padding:6px 0 6px 40px;}
 			nav .chat-list ul ul li:hover		{background-color:rgba(25, 85, 95, 0.7);}
 			nav .chat-list ul ul li:last-child 	{color:rgba(220, 237, 239, 0.3);}
 			nav .chat-list ul ul li i			{margin-right:5px;}
@@ -53,7 +56,7 @@
 		</style>
 	</head>
 	<body>
-		<header>
+		<header class="dung-geunmo">
 			<div class="logo-area">
 				<img src="../public/images/logo_small.png" class="logo-icon" alt="logo"/>
 				<img src="../public/images/logo_text.png" class="logo-txt" alt="title"/>
@@ -68,7 +71,7 @@
 				</div>
 			</div>
 		</header>
-		<nav>
+		<nav class="dung-geunmo">
 			<div class="team-title">
 				<span>Temp Team</span>
 				<div>
