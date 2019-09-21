@@ -37,9 +37,22 @@
 			nav .chat-list > ul div				{padding:10px 0 10px 15px;}
 			nav .chat-list > ul div:hover		{color:#ffffff;}
 
-			aside .tab-menu						{width:100%;}
-			aside .tab-menu span                {display:inline-block; float:left; width:25%; height:40px; box-sizing:border-box; border:1px solid #268c9a; line-height:56px; text-align:center;}
+			aside .tab-menu                     {width:100%; height:45px; border-top:solid 1px rgb(55, 163, 177);}
+			aside .tab-menu span                {display:inline-block; float:left; width:25%; height:45px; box-sizing:border-box; line-height:65px; text-align:center;}
 			aside .tab-menu span:not(.active)	{background-color:#41b4c3;}
+			aside .tab-menu span img            {width:27px;}
+			aside .card                         {margin:10px; padding:5px 8px 8px 8px; background-color:rgba(199, 223, 226, 0.9); border-radius:10px; color:#7E7E7E;}
+			aside .card .card-info				{position:relative; margin-bottom:4px;}
+			aside .card .card-info > div        {display:inline-block;}
+			aside .card .card-info > div > *    {vertical-align:middle;}
+			aside .card .card-info > span    	{position:absolute; right:0; font-size:20px; color:rgba(11, 80, 90, 0.2);}
+			aside .card .card-info > span:hover {color:rgba(31, 118, 130, 0.8);}
+			aside .card-info-date               {position:absolute; right:22px; font-size:12px;}
+			aside .card .profile           		{width:22px; border-radius:20px;}
+			aside .card .card-content			{padding:4px 6px; background-color:#ffffff; border-radius:5px;}
+			aside .card-content-file			{padding:3px; border:solid 1px #dedede; border-radius:5px;}
+			.card-content-file span				{font-size:12px;}
+			.card-content-file span:last-child  {float:right; font-size:11px;}
 
 			.hidden 							{display:none;}
 
@@ -113,10 +126,50 @@
 		</nav>
 		<aside class="hidden">
 			<div class="tab-menu">
-				<span class="active" onclick="addActive(this)"><img src="../public/images/icon_noti.png" alt="icon"/></span>
-				<span onclick="addActive(this)"><img src="../public/images/icon_clip.png" alt="icon"/></span>
-				<span onclick="addActive(this)"><img src="../public/images/icon_at.png" alt="icon"/></span>
-				<span onclick="addActive(this)"><img src="../public/images/icon_star.png" alt="icon"/></span>
+				<span class="active" onclick="addActive(this)"><img src="../public/icons/icon_noti.png" alt="icon"/></span>
+				<span onclick="addActive(this)"><img src="../public/icons/icon_clip.png" alt="icon"/></span>
+				<span onclick="addActive(this)"><img src="../public/icons/icon_at.png" alt="icon"/></span>
+				<span onclick="addActive(this)"><img src="../public/icons/icon_star.png" alt="icon"/></span>
+			</div>
+			<div class="tab-content">
+				<div class="card">
+					<div class="card-info">
+						<div>
+							<img src="../public/images/profile_yj.jpg" class="profile" alt="profile"/>
+							<span class="user-name">오윤주</span>
+						</div>
+						<div class="card-info-date">
+							<span>2019.09.07 18:20</span>
+						</div>
+						<span><i class="fas fa-times"></i></span>
+					</div>
+					<div class="card-content">
+						<p>메일 확인해주세요.</p>
+						<div class="card-content-file">
+							<span><i class="fas fa-paperclip"></i></span>
+							<span>2019상반기_총결산.doc</span>
+							<span>200KB</span>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-info">
+						<div>
+							<img src="../public/images/profile_yj.jpg" class="profile" alt="profile"/>
+							<span class="user-name">오윤주</span>
+						</div>
+						<div class="card-info-date">
+							<span>2019.09.07 18:20</span>
+						</div>
+						<span><i class="fas fa-times"></i></span>
+					</div>
+					<div class="card-content">
+						<p>그런데 인간의 모든 삶은 전적으로 의욕과 성취 사이를 계속 흘러간다. 소망은 그 본성에 따라
+							고통이다. 즉 성취는 얼마 안가 포만을 낳고, 목표는 겉보기에 그럴 뿐이다. 소유는 매력을
+							반감시키고, 새로운 모습을 띠고 소망과 욕구과 다시 나타난다. 그렇지 않으면 황량함, 공허,
+							지루함이 뒤따르고, 이에 대한 투쟁은 곤궁함에 대한 투쟁과 마찬가지로 고통스러운 것이다.</p>
+					</div>
+				</div>
 			</div>
 		</aside>
 
@@ -141,10 +194,8 @@
 		<script type="text/javascript">
 
 			const menuBtn      = document.getElementsByClassName("menu-dot-area")[0];
-			const menuCloseBtn = document.getElementsByClassName("menu-close-btn")[0];
 			const aside        = document.getElementsByTagName("aside")[0];
 			const tabMenu	   = document.getElementsByClassName("tab-menu")[0];
-			const tabMenuSpan  = tabMenu.getElementsByTagName("span");
 
 			const profile = document.getElementsByClassName("profile-inside-area")[0];
 			const myModal = document.getElementById("my-modal");
