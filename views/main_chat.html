@@ -8,10 +8,22 @@
 		<style type="text/css">
 			header								{width:100%; height:50px; background-color:#41b4c3;}
 			nav									{position:absolute; display:inline-block; width:270px; height:calc(100% - 50px); background-color:#268c9a;}
-			aside								{position:absolute; right:0; width:360px; height:calc(100% - 50px); background-color:#268c9a;}
+			aside								{position:absolute; right:0; width:360px; height:calc(100% - 50px); background-color:#268c9a; z-index:1;}
 
+			/* 공통 클래스 */
 			@font-face 							{font-family:"DungGeunMo"; src:url("../public/fonts/DungGeunMo.woff");}
 			.dung-geunmo						{font-family:"DungGeunMo", serif;}
+			.hidden 							{display:none;}
+			.scroll								{overflow-y:auto;}
+			.profile							{border-radius:50px; cursor:pointer;}
+			.profile-inside-area				{cursor:pointer;}
+			.file								{padding:3px; border:solid 1px #dedede; border-radius:5px; cursor:pointer;}
+			.file span							{font-size:12px;}
+			.file span:last-child  				{float:right; font-size:11px;}
+			/* 스크롤 디자인 */
+			::-webkit-scrollbar 				{width:10px; height:12px;}
+			::-webkit-scrollbar-track 			{background:rgba(148, 148, 148, 0.3);}
+			::-webkit-scrollbar-thumb 			{background:rgba(0, 0, 0, 0.2); border-radius:3px;}
 
 			.logo-area							{display:inline-block; padding-right:15px; margin-left:15px; line-height:50px; cursor:pointer;}
 			.logo-area .logo-icon				{padding-right:10px; height:40px; vertical-align:middle;}
@@ -20,7 +32,7 @@
 			.profile-area						{float:right; line-height:50px;}
 			.profile-area > div					{display:inline-block; line-height:50px; cursor:pointer;}
 			.profile-area > div .user-name		{display:inline-block; padding-left:2px; height:100%; vertical-align:middle; font-size:20px; color:#ffffff;}
-			.profile-area > div .profile		{height:35px; vertical-align:middle; border-radius:50px;}
+			.profile-area > div .profile		{height:35px; vertical-align:middle;}
 			.profile-area > div .menu-dot		{margin:0 15px 0 8px; width:25px;}
 
 			nav > *								{color:rgba(199, 223, 226, 0.9); cursor:pointer;}
@@ -42,20 +54,35 @@
 			aside .tab-menu span:not(.active)	{background-color:#41b4c3;}
 			aside .tab-menu span img            {width:27px;}
 			aside .card                         {margin:10px; padding:5px 8px 8px 8px; background-color:rgba(199, 223, 226, 0.9); border-radius:10px; color:#7E7E7E;}
+			aside .card:hover .card-content		{background-color:#f2f8f9;}
 			aside .card .card-info				{position:relative; margin-bottom:4px;}
 			aside .card .card-info > div        {display:inline-block;}
 			aside .card .card-info > div > *    {vertical-align:middle;}
 			aside .card .card-info > span    	{position:absolute; right:0; font-size:20px; color:rgba(11, 80, 90, 0.2);}
-			aside .card .card-info > span:hover {color:rgba(31, 118, 130, 0.8);}
+			aside .card .card-info > span:hover {color:rgba(31, 118, 130, 0.8); cursor:pointer;}
 			aside .card-info-date               {position:absolute; right:22px; font-size:12px;}
-			aside .card .profile           		{width:22px; border-radius:20px;}
+			aside .card .profile           		{width:22px;}
 			aside .card .card-content			{padding:4px 6px; background-color:#ffffff; border-radius:5px;}
-			aside .card-content-file			{padding:3px; border:solid 1px #dedede; border-radius:5px;}
-			.card-content-file span				{font-size:12px;}
-			.card-content-file span:last-child  {float:right; font-size:11px;}
 
-			.hidden 							{display:none;}
+			section								{position:relative; left:270px; width:calc(100% - 270px); height:calc(100% - 50px); color:#7E7E7E;}
+			section .chat-message				{position:relative; padding:15px; overflow:auto; cursor:default;}
+			section .chat-message:hover			{width:calc(100% - 30px); background-color:rgba(169, 213, 215, 0.2);}
+			section .chat-message .profile		{float:left; margin-right:10px; width:45px;}
+			section .chat-content				{display:block; float:left; padding-top:5px; width:calc(100% - 55px);}
+			section .chat-content > *			{margin-bottom:5px;}
+			section .chat-info					{position:relative; display:block;}
+			section .chat-info .user-name		{display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-right:5px; vertical-align:middle; font-size:18px; font-weight:bold;}
+			section .chat-info .send-date		{vertical-align:middle; color:#d2d2d2;}
+			section .file						{padding:8px 14px;}
+			section .chat-menu					{position:absolute; top:2px; right:15px; line-height:14px;}
+			section .chat-menu ul				{display:inline-block; margin:0; padding:0;}
+			section .chat-menu ul li			{float:left; padding:2px 10px; opacity:0.5; border-top:solid 1px #dedede; border-bottom:solid 1px #dedede; border-left:solid 1px #dedede;}
+			section .chat-menu ul li:first-child{border-top-left-radius:5px; border-bottom-left-radius:5px;}
+			section .chat-menu ul li:last-child {border-right:solid 1px #dedede; border-top-right-radius:5px; border-bottom-right-radius:5px;}
+			section .chat-menu ul li img		{width:23px;}
+			section .chat-menu ul li:hover		{opacity:1.0}
 
+			section .chat-message:hover .chat-menu {display:inline-block;}
 			/* modal */
 			.modal								{position:fixed; top:0; left:0; padding-top:100px; width:100%; height:100%; overflow:auto; z-index:1; background-color:rgba(0, 0, 0, 0.6);}
 			.modal-content						{margin:0 auto; width:700px; background-color:#E3F0F2; border-radius:10px;}
@@ -83,7 +110,7 @@
 				</div>
 			</div>
 		</header>
-		<nav class="dung-geunmo">
+		<nav class="dung-geunmo scroll">
 			<div class="team-title">
 				<span>Temp Team</span>
 				<div>
@@ -124,7 +151,7 @@
 				</ul>
 			</div>
 		</nav>
-		<aside class="hidden">
+		<aside class="hidden scroll">
 			<div class="tab-menu">
 				<span class="active" onclick="addActive(this)"><img src="../public/icons/icon_noti.png" alt="icon"/></span>
 				<span onclick="addActive(this)"><img src="../public/icons/icon_clip.png" alt="icon"/></span>
@@ -134,7 +161,7 @@
 			<div class="tab-content">
 				<div class="card">
 					<div class="card-info">
-						<div>
+						<div class="profile-inside-area">
 							<img src="../public/images/profile_yj.jpg" class="profile" alt="profile"/>
 							<span class="user-name">오윤주</span>
 						</div>
@@ -145,7 +172,7 @@
 					</div>
 					<div class="card-content">
 						<p>메일 확인해주세요.</p>
-						<div class="card-content-file">
+						<div class="file">
 							<span><i class="fas fa-paperclip"></i></span>
 							<span>2019상반기_총결산.doc</span>
 							<span>200KB</span>
@@ -154,7 +181,7 @@
 				</div>
 				<div class="card">
 					<div class="card-info">
-						<div>
+						<div class="profile-inside-area">
 							<img src="../public/images/profile_yj.jpg" class="profile" alt="profile"/>
 							<span class="user-name">오윤주</span>
 						</div>
@@ -172,6 +199,76 @@
 				</div>
 			</div>
 		</aside>
+		<section class="scroll">
+			<div class="chat-message">
+				<img src="../public/images/profile_yj.jpg" class="profile" alt="profile"/>
+				<div class="chat-content">
+					<div class="chat-info">
+						<span class="user-name">오윤주</span>
+						<span class="send-date">2019.09.07 18:20</span>
+					</div>
+					<p>메일 확인해주세요.</p>
+					<div class="file">
+						<span><i class="fas fa-paperclip"></i></span>
+						<span>2019상반기_총결산.doc</span>
+						<span>200KB</span>
+					</div>
+				</div>
+				<div class="chat-menu hidden">
+					<ul>
+						<li><img src="../public/icons/icon_noti.png" alt="icon"/></li>
+						<li><img src="../public/icons/icon_clip.png" alt="icon"/></li>
+						<li><img src="../public/icons/icon_at.png" alt="icon"/></li>
+						<li><img src="../public/icons/icon_star.png" alt="icon"/></li>
+					</ul>
+				</div>
+			</div>
+			<div class="chat-message">
+				<img src="../public/images/profile_yj.jpg" class="profile" alt="profile"/>
+				<div class="chat-content">
+					<div class="chat-info">
+						<span class="user-name">아르투어 쇼펜하우어</span>
+						<span class="send-date">2019.09.07 18:20</span>
+					</div>
+					<p>그런데 인간의 모든 삶은 전적으로 의욕과 성취 사이를 계속 흘러간다. 소망은 그 본성에 따라
+						고통이다. 즉 성취는 얼마 안가 포만을 낳고, 목표는 겉보기에 그럴 뿐이다. 소유는 매력을
+						반감시키고, 새로운 모습을 띠고 소망과 욕구과 다시 나타난다. 그렇지 않으면 황량함, 공허,
+						지루함이 뒤따르고, 이에 대한 투쟁은 곤궁함에 대한 투쟁과 마찬가지로 고통스러운 것이다.</p>
+				</div>
+				<div class="chat-menu hidden">
+					<ul>
+						<li><img src="../public/icons/icon_noti.png" alt="icon"/></li>
+						<li><img src="../public/icons/icon_clip.png" alt="icon"/></li>
+						<li><img src="../public/icons/icon_at.png" alt="icon"/></li>
+						<li><img src="../public/icons/icon_star.png" alt="icon"/></li>
+					</ul>
+				</div>
+			</div>
+			<div class="chat-message">
+				<img src="../public/images/profile_yj.jpg" class="profile" alt="profile"/>
+				<div class="chat-content">
+					<div class="chat-info">
+						<span class="user-name">닉네임 길어지면 말줄임 표시할 것 닉네임 길어지면 말줄임 표시할 것 닉네임 길어지면 말줄임 표시할 것</span>
+						<span class="send-date">2019.09.07 18:20</span>
+					</div>
+					<p>제1항의 탄핵소추는 국회재적의원 3분의 1 이상의 발의가 있어야 하며, 그 의결은 국회재적의원
+						과반수의 찬성이 있어야 한다. 다만, 대통령에 대한 탄핵소추는 국회재적의원 과반수의 발의와
+						국회재적의원 3분의 2 이상의 찬성이 있어야 한다. 국민의 자유와 권리는 헌법에 열거되지 아니한
+						이유로 경시되지 아니한다. 평화통일정책의 수립에 관한 대통령의 자문에 응하기 위하여
+						민주평화통일자문회의를 둘 수 있다. 모든 국민은 법률이 정하는 바에 의하여 납세의 의무를 진다.
+						대통령이 궐위된 때 또는 대통령 당선자가 사망하거나 판결 기타의 사유로 그 자격을 상실한 때에는
+						60일 이내에 후임자를 선거한다.</p>
+				</div>
+				<div class="chat-menu hidden">
+					<ul>
+						<li><img src="../public/icons/icon_noti.png" alt="icon"/></li>
+						<li><img src="../public/icons/icon_clip.png" alt="icon"/></li>
+						<li><img src="../public/icons/icon_at.png" alt="icon"/></li>
+						<li><img src="../public/icons/icon_star.png" alt="icon"/></li>
+					</ul>
+				</div>
+			</div>
+		</section>
 
 		<!-- 개인 정보 설정 modal -->
 		<div id="my-modal" class="modal hidden">
@@ -195,6 +292,7 @@
 
 			const menuBtn      = document.getElementsByClassName("menu-dot-area")[0];
 			const aside        = document.getElementsByTagName("aside")[0];
+			const section	   = document.getElementsByTagName("section")[0];
 			const tabMenu	   = document.getElementsByClassName("tab-menu")[0];
 
 			const profile = document.getElementsByClassName("profile-inside-area")[0];
@@ -226,8 +324,10 @@
 			menuBtn.onclick = function() {
 				if(aside.classList.contains("hidden")) {
 					aside.classList.remove("hidden");
+					section.style.width = "calc(100% - 270px - 360px)";
 				} else {
 					aside.classList.add("hidden");
+					section.style.width = "calc(100% - 270px)";
 				};
 			};
 
