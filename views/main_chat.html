@@ -14,16 +14,25 @@
 			@font-face 							{font-family:"DungGeunMo"; src:url("../public/fonts/DungGeunMo.woff");}
 			.dung-geunmo						{font-family:"DungGeunMo", serif;}
 			.hidden 							{display:none;}
+			.visi-hidden						{visibility:hidden;}
 			.scroll								{overflow-y:auto;}
-			.profile							{border-radius:50px; cursor:pointer;}
+			.profile							{border-radius:100px; cursor:pointer;}
 			.profile-inside-area				{cursor:pointer;}
 			.file								{padding:3px; border:solid 1px #dedede; border-radius:5px; cursor:pointer;}
 			.file span							{font-size:12px;}
 			.file span:last-child  				{float:right; font-size:11px;}
+			.btn 								{border:none; background:none; border-radius:5px; cursor:pointer;}
+			.close								{float:right; color:rgba(11, 80, 90, 0.2);}
+			.close:hover						{color:rgba(31, 118, 130, 0.8); cursor:pointer;}
+			.red								{color:rgb(220, 83, 83)!important;}
+			.green								{color:#41b4c3!important;}
 			/* 스크롤 디자인 */
 			::-webkit-scrollbar 				{width:10px; height:12px;}
 			::-webkit-scrollbar-track 			{background:rgba(148, 148, 148, 0.3);}
 			::-webkit-scrollbar-thumb 			{background:rgba(0, 0, 0, 0.2); border-radius:3px;}
+			/* placeholder */
+			::-webkit-input-placeholder			{color:#e6e6e6;}
+			:-ms-input-placeholder				{color:#e6e6e6;}
 
 			.logo-area							{display:inline-block; padding-right:15px; margin-left:15px; line-height:50px; cursor:pointer;}
 			.logo-area .logo-icon				{padding-right:10px; height:40px; vertical-align:middle;}
@@ -58,8 +67,7 @@
 			aside .card .card-info				{position:relative; margin-bottom:4px;}
 			aside .card .card-info > div        {display:inline-block;}
 			aside .card .card-info > div > *    {vertical-align:middle;}
-			aside .card .card-info > span    	{position:absolute; right:0; font-size:20px; color:rgba(11, 80, 90, 0.2);}
-			aside .card .card-info > span:hover {color:rgba(31, 118, 130, 0.8); cursor:pointer;}
+			aside .card .card-info .close    	{font-size:20px;}
 			aside .card-info-date               {position:absolute; right:22px; font-size:12px;}
 			aside .card .profile           		{width:22px;}
 			aside .card .card-content			{padding:4px 6px; background-color:#ffffff; border-radius:5px;}
@@ -87,7 +95,23 @@
 			.modal								{position:fixed; top:0; left:0; padding-top:100px; width:100%; height:100%; overflow:auto; z-index:1; background-color:rgba(0, 0, 0, 0.6);}
 			.modal-content						{margin:0 auto; width:700px; background-color:#E3F0F2; border-radius:10px;}
 			/* ----개인 정보 설정 */
-			#my-modal-content					{height:700px;}
+			#my-modal-content					{position:relative; padding:30px; width:600px; height:580px; box-sizing:border-box; text-align:center;}
+			#my-modal-content > div				{margin-bottom:20px;}
+			#my-modal *:not(i):not(span)		{font-family:"DungGeunMo", serif; font-size:17px; color:#7E7E7E;}
+			#my-modal button					{padding:7px 16px;}
+			#my-modal .close					{position:absolute; top:15px; right:15px; font-size:30px;}
+			#my-modal .profile-inside-area div  {margin:10px 0;}
+			#my-modal .modify-btn				{margin-right:6px; background-color:#ffffff;}
+			#my-modal .delete-btn				{background-color:#ffffff;}
+			#my-modal .profile					{width:180px;}
+			#my-modal .input-area				{margin-bottom:35px;}
+			#my-modal .input-area > div > div	{display:inline-block; text-align:left;}
+			#my-modal .input-area label			{display:block; margin-bottom:8px;}
+			#my-modal .input-area input			{margin-bottom:5px; padding:10px 16px; width:370px; font-size:21px; border:none; border-radius:5px;}
+			#my-modal .input-area span			{float:right; margin:10px 0 0 10px; font-size:26px;}
+			#my-modal .input-area .warning		{padding-right:35px; text-align:right;}
+			#my-modal .btn-area button			{padding:10px 20px; background-color:#41b4c3; font-size:21px; color:#E3F0F2;}
+			#my-modal .btn-area button:hover	{background-color:#268c9a;}
 			/* ----팀 설정 */
 			#team-modal-content					{height:400px;}
 			/* ---- 팀 멤버 초대 */
@@ -168,7 +192,7 @@
 						<div class="card-info-date">
 							<span>2019.09.07 18:20</span>
 						</div>
-						<span><i class="fas fa-times"></i></span>
+						<span class="close"><i class="fas fa-times"></i></span>
 					</div>
 					<div class="card-content">
 						<p>메일 확인해주세요.</p>
@@ -188,7 +212,7 @@
 						<div class="card-info-date">
 							<span>2019.09.07 18:20</span>
 						</div>
-						<span><i class="fas fa-times"></i></span>
+						<span class="close"><i class="fas fa-times"></i></span>
 					</div>
 					<div class="card-content">
 						<p>그런데 인간의 모든 삶은 전적으로 의욕과 성취 사이를 계속 흘러간다. 소망은 그 본성에 따라
@@ -271,8 +295,38 @@
 		</section>
 
 		<!-- 개인 정보 설정 modal -->
-		<div id="my-modal" class="modal hidden">
+		<div id="my-modal" class="modal my-modal hidden">
 			<div id="my-modal-content" class="modal-content">
+				<span class="close" onclick="myModal.classList.add('hidden');"><i class="fas fa-times"></i></span>
+				<div class="profile-inside-area">
+					<img src="../public/images/profile_yj.jpg" class="profile" alt="profile"/>
+					<div>
+						<button type="button" class="btn modify-btn green"><i class="fas fa-exchange-alt"></i>변경</button>
+						<button type="button" class="btn delete-btn red"><i class="far fa-trash-alt"></i>삭제</button>
+					</div>
+				</div>
+				<div class="input-area">
+					<div>
+						<div>
+							<label for="nickname">이름</label>
+							<input type="text" id="nickname" placeholder="Nickname"/>
+							<span class="confirm green"><i class="far fa-check-circle"></i></span>
+							<p class="warning confirm green">사용 가능한 이름입니다.</p>
+						</div>
+					</div>
+					<div>
+						<div>
+							<label for="email">연결된 이메일</label>
+							<input type="text" id="email" placeholder="id@email.com"/>
+							<span class="no-confirm red"><i class="fas fa-ban"></i></span>
+							<p class="warning no-confirm red">중복된 이메일입니다.</p>
+						</div>
+					</div>
+				</div>
+				<div class="btn-area">
+					<button type="button" class="btn save-btn">저장</button>
+					<button type="button" class="btn cancel-btn">취소</button>
+				</div>
 			</div>
 		</div>
 
