@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<title>S'Temp</title>
 		<link href="../public/stylesheets/reset.css" rel="stylesheet" type="text/css"/>
+		<link href="../public/stylesheets/animation.css" rel="stylesheet" type="text/css"/>
 		<link href="../public/icons/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css" rel="stylesheet"/>
 		<style type="text/css">
 			header								{width:100%; height:50px; background-color:#41b4c3;}
@@ -102,17 +103,20 @@
 			#my-modal button					{padding:7px 16px;}
 			#my-modal .close					{position:absolute; top:15px; right:15px; font-size:30px;}
 			#my-modal .profile-inside-area div  {margin:10px 0;}
-			#my-modal .modify-btn				{margin-right:6px; background-color:#ffffff;}
-			#my-modal .delete-btn				{background-color:#ffffff;}
+			#my-modal .profile-inside-area .btn {background-color:#ffffff; box-shadow:2px 2px 2px #DDDDDD;}
+			#my-modal .profile-inside-area i	{margin-right:5px;}
+			#my-modal .modify-btn				{margin-right:6px;}
 			#my-modal .profile					{width:180px;}
-			#my-modal .input-area				{margin-bottom:35px;}
-			#my-modal .input-area > div > div	{display:inline-block; text-align:left;}
+			#my-modal .input-area				{margin-bottom:27px;}
+			#my-modal .input-area > div > div	{display:inline-block; margin-left:20px; width:437px; text-align:left;}
 			#my-modal .input-area label			{display:block; margin-bottom:8px;}
-			#my-modal .input-area input			{margin-bottom:5px; padding:10px 16px; width:370px; font-size:21px; border:none; border-radius:5px;}
-			#my-modal .input-area span			{float:right; margin:10px 0 0 10px; font-size:26px;}
-			#my-modal .input-area .warning		{padding-right:35px; text-align:right;}
-			#my-modal .btn-area button			{padding:10px 20px; background-color:#41b4c3; font-size:21px; color:#E3F0F2;}
-			#my-modal .btn-area button:hover	{background-color:#268c9a;}
+			#my-modal .input-area input			{float:left; margin-bottom:5px; padding:10px 16px; width:370px; font-size:21px; border:none; border-radius:5px;}
+			#my-modal .input-area .warning		{float:right; margin-top:0; padding-right:35px;}
+			#my-modal .input-area .confirm-area {position:relative; float:right; display:inline-block; margin-top:8px;}
+			#my-modal .confirm-area .circle		{position:absolute;}
+			#my-modal .btn-area .btn			{padding:10px 20px; background-color:#41b4c3; font-size:21px; color:#E3F0F2;}
+			#my-modal .btn-area .btn:hover		{background-color:#268c9a;}
+			#my-modal .btn-area .btn.save-btn	{margin-right:6px;}
 			/* ----팀 설정 */
 			#team-modal-content					{height:400px;}
 			/* ---- 팀 멤버 초대 */
@@ -311,16 +315,22 @@
 						<div>
 							<label for="nickname">이름</label>
 							<input type="text" id="nickname" placeholder="Nickname"/>
-							<span class="confirm green"><i class="far fa-check-circle"></i></span>
-							<p class="warning confirm green">사용 가능한 이름입니다.</p>
+							<div class="confirm-area">
+								<div class="circle"></div>
+								<span class="confirm pass"><i class="fas fa-check"></i></span>
+							</div>
+							<p class="warning confirm fail visi-hidden">이미 사용 중인 이름입니다.</p>
 						</div>
 					</div>
 					<div>
 						<div>
 							<label for="email">연결된 이메일</label>
 							<input type="text" id="email" placeholder="id@email.com"/>
-							<span class="no-confirm red"><i class="fas fa-ban"></i></span>
-							<p class="warning no-confirm red">중복된 이메일입니다.</p>
+							<div class="confirm-area">
+								<div class="circle"></div>
+								<span class="confirm fail"><i class="fas fa-exclamation"></i></span>
+							</div>
+							<p class="warning confirm fail">이미 사용 중인 이메일입니다.</p>
 						</div>
 					</div>
 				</div>
@@ -395,6 +405,8 @@
 			// 개인 정보 설정 모달 보이기
 			profile.onclick = function() {
 				myModal.classList.remove("hidden");
+				document.querySelectorAll('.circle')[0].style = "border:none";
+				document.querySelectorAll('.circle')[1].style = "border:none";
 			};
 
 			// 팀 설정 모달 보이기
@@ -416,6 +428,18 @@
 				} else if(e.target === inviteModal) {
 					inviteModal.classList.add("hidden");
 				};
+			};
+
+			// 개인 정보 수정 모달 | animation 끝나고 border 색 지정
+			window.onload = function() {
+				let elm = document.querySelectorAll('.circle');
+
+				elm[0].addEventListener('animationend', function(e) {
+					e.target.style = "border-color:#41b4c3";
+				});
+				elm[1].addEventListener('animationend', function(e) {
+					e.target.style = "border-color:rgb(220, 83, 83)";
+				});
 			};
 
 		</script>

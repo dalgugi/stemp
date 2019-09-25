@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+.circle {
+	display:inline-block;
+	width:20px;
+	height:20px;
+	border:solid 3px #E3F0F2;
+	border-radius:100px;
+	outline:none;
+	animation-name:rint;
+	animation-delay:0.5s;
+	animation-duration:0.5s;
+	animation-timing-function:linear;
+}
+@keyframes rint {
+	from {transform:rotate(0deg); border:solid 3px #E3F0F2; border-top:solid 3px rgba(136, 136, 136, 0.6);}
+	25% {border-left:solid 3px rgba(136, 136, 136, 0.6);}
+	50% {border-bottom:solid 3px rgba(136, 136, 136, 0.6);}
+	75% {border-right:solid 3px rgba(136, 136, 136, 0.6);}
+	to {transform:rotate(360deg); border:solid 3px rgba(136, 136, 136, 0.6);}
+}
+
+.confirm {
+	display:inline-block;
+	margin:4px 5px;
+	color:#E3F0F2!important;
+	animation-delay:1s;
+	animation-duration:0.1s;
+	animation-timing-function:linear;
+	animation-fill-mode:forwards;
+}
+.confirm.pass {animation-name:delay-show-pass;}
+.confirm.fail {margin:4px 9px; animation-name:delay-show-fail;}
+@keyframes delay-show-pass {to {color:#41b4c3;}}
+@keyframes delay-show-fail {to {color:rgb(220, 83, 83);} }
