@@ -316,7 +316,7 @@
 							<label for="nickname">이름</label>
 							<input type="text" id="nickname" placeholder="Nickname"/>
 							<div class="confirm-area">
-								<div class="circle"></div>
+								<div class="circle pass"></div>
 								<span class="confirm pass"><i class="fas fa-check"></i></span>
 							</div>
 							<p class="warning confirm fail visi-hidden">이미 사용 중인 이름입니다.</p>
@@ -327,7 +327,7 @@
 							<label for="email">연결된 이메일</label>
 							<input type="text" id="email" placeholder="id@email.com"/>
 							<div class="confirm-area">
-								<div class="circle"></div>
+								<div class="circle fail"></div>
 								<span class="confirm fail"><i class="fas fa-exclamation"></i></span>
 							</div>
 							<p class="warning confirm fail">이미 사용 중인 이메일입니다.</p>
@@ -405,8 +405,7 @@
 			// 개인 정보 설정 모달 보이기
 			profile.onclick = function() {
 				myModal.classList.remove("hidden");
-				document.querySelectorAll('.circle')[0].style = "border:none";
-				document.querySelectorAll('.circle')[1].style = "border:none";
+				circleBorderDefaultSetting(myModal);
 			};
 
 			// 팀 설정 모달 보이기
@@ -417,6 +416,7 @@
 			// 팀 멤버 초대 모달 보이기
 			inviteBtn.onclick = function() {
 				inviteModal.classList.remove("hidden");
+				circleBorderDefaultSetting(inviteModal);
 			};
 
 			// 모달 감추기
@@ -430,15 +430,27 @@
 				};
 			};
 
-			// 개인 정보 수정 모달 | animation 끝나고 border 색 지정
-			window.onload = function() {
-				let elm = document.querySelectorAll('.circle');
+			// 모달 animation 전 border 보이지 않게 색 지정
+			function circleBorderDefaultSetting(e) {
+				const circle = e.querySelectorAll('.circle');
+				for(let i = 0; i < circle.length; i++) {
+					circle[i].style.borderColor = "#E3F0F2";
+				};
+			};
 
-				elm[0].addEventListener('animationend', function(e) {
-					e.target.style = "border-color:#41b4c3";
-				});
-				elm[1].addEventListener('animationend', function(e) {
-					e.target.style = "border-color:rgb(220, 83, 83)";
+			// 모달 animation 끝나고 border 색 지정
+			window.onload = function() {
+				const circle = document.querySelectorAll('.circle');
+				circle.forEach(function(item, index, arr) {
+					const pass = item.classList.contains("pass");
+
+					arr[index].addEventListener('animationend', function(e) {
+						if(pass) {
+							e.target.style.borderColor = "#41b4c3";
+						} else {
+							e.target.style.borderColor = "rgb(220, 83, 83)";
+						};
+					});
 				});
 			};
 
