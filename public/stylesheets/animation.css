@@ -1,6 +1,17 @@
 @charset "utf-8";
 
-.circle {
+.confirm-area						{visibility:hidden;}
+.confirm-area.pass					{visibility:visible;}
+.confirm-area.fail					{visibility:visible;}
+.confirm-area i 					{display:none;}
+.confirm-area.pass i:first-child 	{display:inline-block;}
+.confirm-area.fail i:last-child 	{display:inline-block;}
+.confirm-area > .circle 			{border-color:#E3F0F2;}
+.confirm-area.pass > .circle.last	{border-color:#41b4c3;}
+.confirm-area.fail > .circle.last	{border-color:rgb(220, 83, 83);}
+.confirm-area.pass > .circle,
+.confirm-area.fail > .circle
+{
 	display:inline-block;
 	width:20px;
 	height:20px;
@@ -20,7 +31,14 @@
 	to {transform:rotate(360deg); border:solid 3px rgba(136, 136, 136, 0.6);}
 }
 
-.confirm {
+.confirm-area + .confirm {
+	visibility:hidden;
+}
+.confirm-area.pass > .confirm,
+.confirm-area.fail > .confirm,
+.confirm-area.fail + .confirm
+{
+	visibility:visible;
 	display:inline-block;
 	margin:4px 5px;
 	color:#E3F0F2!important;
@@ -29,7 +47,8 @@
 	animation-timing-function:linear;
 	animation-fill-mode:forwards;
 }
-.confirm.pass {animation-name:delay-show-pass;}
-.confirm.fail {margin:4px 9px; animation-name:delay-show-fail;}
+.confirm-area.pass > .confirm {animation-name:delay-show-pass;}
+.confirm-area.fail > .confirm {margin:4px 9px; animation-name:delay-show-fail;}
+.confirm-area.fail + .confirm {margin:0 9px; animation-name:delay-show-fail;}
 @keyframes delay-show-pass {to {color:#41b4c3;}}
 @keyframes delay-show-fail {to {color:rgb(220, 83, 83);} }

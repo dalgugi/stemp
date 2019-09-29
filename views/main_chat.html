@@ -95,32 +95,38 @@
 
 			/* modal */
 			.modal								{position:fixed; top:0; left:0; padding-top:100px; width:100%; height:100%; overflow:auto; z-index:1; background-color:rgba(0, 0, 0, 0.6);}
-			.modal-content						{margin:0 auto; width:700px; background-color:#E3F0F2; border-radius:10px;}
+			.modal *:not(i):not(span)			{font-family:"DungGeunMo", serif; font-size:17px; color:#7E7E7E;}
+			.modal-content						{position:relative; margin:0 auto; padding:30px; width:620px; background-color:#E3F0F2; box-sizing:border-box; border-radius:10px; text-align:center;}
+			.modal button						{padding:7px 16px;}
+			.modal .close						{position:absolute; top:15px; right:15px; font-size:30px;}
+			.modal .title-area					{display:inline-block; margin-bottom:10px; width:437px;}
+			.modal .title-area p				{float:left; margin:5px 0 20px 10px; font-size:21px;}
+			.modal .input-area					{margin-bottom:27px;}
+			.modal .input-area > div > div		{display:inline-block; margin-left:20px; width:437px; text-align:left;}
+			.modal .input-area label			{display:block; margin-bottom:8px;}
+			.modal .input-area input			{float:left; margin-bottom:5px; padding:10px 16px; width:370px; font-size:21px; border:none; border-radius:5px;}
+			.modal .input-area .warning			{float:right; margin-top:0; padding-right:35px;}
+			.modal .input-area .confirm-area 	{position:relative; float:right; display:inline-block; margin-top:8px;}
+			.modal .more-member					{display:inline-block; margin-top:10px; width:407px;}
+			.modal .more-member span			{display:inline-block; float:left; opacity:0.6; cursor:pointer;}
+			.modal .more-member span:hover		{opacity:1;}
+			.modal .more-member span > i		{margin-right:5px; font-size:16px;}
+			.modal .btn-area .btn				{padding:10px 20px; background-color:#41b4c3; font-size:21px; color:#E3F0F2;}
+			.modal .btn-area .btn:hover			{background-color:#268c9a;}
+			.modal .btn-area .btn.save-btn		{margin-right:6px;}
+			.modal .confirm-area .circle		{position:absolute;}
 			/* ----개인 정보 설정 */
-			#my-modal-content					{position:relative; padding:30px; width:600px; height:580px; box-sizing:border-box; text-align:center;}
-			#my-modal-content > div				{margin-bottom:20px;}
-			#my-modal *:not(i):not(span)		{font-family:"DungGeunMo", serif; font-size:17px; color:#7E7E7E;}
-			#my-modal button					{padding:7px 16px;}
-			#my-modal .close					{position:absolute; top:15px; right:15px; font-size:30px;}
-			#my-modal .profile-inside-area div  {margin:10px 0;}
-			#my-modal .profile-inside-area .btn {background-color:#ffffff; box-shadow:2px 2px 2px #DDDDDD;}
-			#my-modal .profile-inside-area i	{margin-right:5px;}
-			#my-modal .modify-btn				{margin-right:6px;}
-			#my-modal .profile					{width:180px;}
-			#my-modal .input-area				{margin-bottom:27px;}
-			#my-modal .input-area > div > div	{display:inline-block; margin-left:20px; width:437px; text-align:left;}
-			#my-modal .input-area label			{display:block; margin-bottom:8px;}
-			#my-modal .input-area input			{float:left; margin-bottom:5px; padding:10px 16px; width:370px; font-size:21px; border:none; border-radius:5px;}
-			#my-modal .input-area .warning		{float:right; margin-top:0; padding-right:35px;}
-			#my-modal .input-area .confirm-area {position:relative; float:right; display:inline-block; margin-top:8px;}
-			#my-modal .confirm-area .circle		{position:absolute;}
-			#my-modal .btn-area .btn			{padding:10px 20px; background-color:#41b4c3; font-size:21px; color:#E3F0F2;}
-			#my-modal .btn-area .btn:hover		{background-color:#268c9a;}
-			#my-modal .btn-area .btn.save-btn	{margin-right:6px;}
+			#my-modal-content					{height:580px;}
+			#my-modal-content > div				{margin:5px 0 20px 0;}
+			.my-modal .profile-inside-area div  {margin:10px 0;}
+			.my-modal .profile-inside-area .btn {background-color:#ffffff; box-shadow:2px 2px 2px #DDDDDD;}
+			.my-modal .profile-inside-area i	{margin-right:5px;}
+			.my-modal .modify-btn				{margin-right:6px;}
+			.my-modal .profile					{width:180px;}
 			/* ----팀 설정 */
 			#team-modal-content					{height:400px;}
 			/* ---- 팀 멤버 초대 */
-			#member-invite-modal-content		{height:700px;}
+			#member-invite-modal-content		{height:455px;}
 		</style>
 	</head>
 	<body>
@@ -313,8 +319,8 @@
 				<div class="input-area">
 					<div>
 						<div>
-							<label for="nickname">이름</label>
-							<input type="text" id="nickname" placeholder="Nickname"/>
+							<label>이름</label>
+							<input type="text" class="nickname" placeholder="Nickname"/>
 							<div class="confirm-area">
 								<div class="circle pass"></div>
 								<span class="confirm pass"><i class="fas fa-check"></i></span>
@@ -324,8 +330,8 @@
 					</div>
 					<div>
 						<div>
-							<label for="email">연결된 이메일</label>
-							<input type="text" id="email" placeholder="id@email.com"/>
+							<label>연결된 이메일</label>
+							<input type="text" class="email" placeholder="id@email.com"/>
 							<div class="confirm-area">
 								<div class="circle fail"></div>
 								<span class="confirm fail"><i class="fas fa-exclamation"></i></span>
@@ -350,10 +356,79 @@
 		<!-- 팀 멤버 초대 modal -->
 		<div id="member-invite-modal" class="modal hidden">
 			<div id="member-invite-modal-content" class="modal-content">
+				<span class="close" onclick="inviteModal.classList.add('hidden');"><i class="fas fa-times"></i></span>
+				<div class="title-area"><p>멤버 초대하기</p></div>
+				<div class="input-area">
+					<div id="form">
+						<!--<div>
+							<div>
+								<input type="text" class="email" placeholder="id@email.com" onfocus="inputCheckReset(this)" onfocusout="inputCheck(this)"/>
+								<div class="confirm-area">
+									<div class="circle"></div>
+									<span class="confirm">
+										<i class="fas fa-check"></i>
+										<i class="fas fa-exclamation"></i>
+									</span>
+								</div>
+								<p class="warning confirm">이미 팀에 존재하는 이메일입니다.</p>
+							</div>
+						</div>-->
+					</div>
+					<div>
+						<div>
+							<input type="text" class="email" placeholder="id@email.com" onfocus="inputCheckReset(this)" onfocusout="inputCheck(this)"/>
+							<div class="confirm-area">
+								<div class="circle"></div>
+								<span class="confirm">
+										<i class="fas fa-check"></i>
+										<i class="fas fa-exclamation"></i>
+									</span>
+							</div>
+							<p class="warning confirm">이미 팀에 존재하는 이메일입니다.</p>
+						</div>
+					</div>
+					<div>
+						<div>
+							<input type="text" class="email" placeholder="id@email.com" onfocus="inputCheckReset(this)" onfocusout="inputCheck(this)"/>
+							<div class="confirm-area">
+								<div class="circle"></div>
+								<span class="confirm">
+										<i class="fas fa-check"></i>
+										<i class="fas fa-exclamation"></i>
+									</span>
+							</div>
+							<p class="warning confirm">이미 팀에 존재하는 이메일입니다.</p>
+						</div>
+					</div>
+					<div>
+						<div>
+							<input type="text" class="email" placeholder="id@email.com" onfocus="inputCheckReset(this)" onfocusout="inputCheck(this)"/>
+							<div class="confirm-area">
+								<div class="circle"></div>
+								<span class="confirm">
+									<i class="fas fa-check"></i>
+									<i class="fas fa-exclamation"></i>
+								</span>
+							</div>
+							<p class="warning confirm">이미 팀에 존재하는 이메일입니다.</p>
+						</div>
+					</div>
+					<div class="more-member">
+						<span onclick="moreMember(this.parentNode)"><i class="fas fa-plus"></i>더 초대하기</span>
+					</div>
+				</div>
+				<div class="btn-area">
+					<button type="button" class="btn save-btn">초대</button>
+					<button type="button" class="btn cancel-btn">취소</button>
+				</div>
 			</div>
 		</div>
 
 		<script type="text/javascript">
+
+			/* Common js */
+			function replaceForm(obj) 					{ return obj.innerHTML.replace("<!--", "").replace("-->", ""); }
+			function idSelector(idName) 				{ return document.getElementById(idName); }
 
 			const menuBtn      = document.getElementsByClassName("menu-dot-area")[0];
 			const aside        = document.getElementsByTagName("aside")[0];
@@ -434,23 +509,53 @@
 			function circleBorderDefaultSetting(e) {
 				const circle = e.querySelectorAll('.circle');
 				for(let i = 0; i < circle.length; i++) {
-					circle[i].style.borderColor = "#E3F0F2";
+					circle[i].classList.remove("last");
 				};
 			};
 
-			// 모달 animation 끝나고 border 색 지정
-			window.onload = function() {
-				const circle = document.querySelectorAll('.circle');
-				circle.forEach(function(item, index, arr) {
-					const pass = item.classList.contains("pass");
+			// 팀 멤버 초대 모달 | 더 초대하기 클릭시 이메일 입력 input 추가
+			function moreMember(obj) {
+				let div = document.createElement("div");
+				div.innerHTML = replaceForm(idSelector("form"));
+				obj.before(div);
 
-					arr[index].addEventListener('animationend', function(e) {
-						if(pass) {
-							e.target.style.borderColor = "#41b4c3";
-						} else {
-							e.target.style.borderColor = "rgb(220, 83, 83)";
-						};
-					});
+				// 모달 높이 조절
+				const modal = idSelector("member-invite-modal-content");
+				let modalHeight = modal.scrollHeight + 30;
+
+				if(modalHeight < window.innerHeight * 0.75) {
+					modal.style.height = modalHeight + "px";
+				} else {
+					modal.style.overflowY = "auto";
+					modal.scrollTop = modal.scrollHeight;
+				};
+			};
+
+			function inputCheckReset(obj) {
+				const confirmArea = obj.nextSibling.nextSibling;
+				const circle = obj.nextSibling.nextSibling.firstChild.nextSibling;
+
+				confirmArea.classList.remove("pass");
+				confirmArea.classList.remove("fail");
+				circle.classList.remove("last");
+			};
+
+			function inputCheck(obj) {
+				const val = obj.value;
+				let dbData = "a";
+				let dbCheck = val === dbData;
+				const confirmArea = obj.nextSibling.nextSibling;
+				const circle = obj.nextSibling.nextSibling.firstChild.nextSibling;
+
+				if(dbCheck) {
+					confirmArea.classList.add("pass");
+				} else {
+					confirmArea.classList.add("fail");
+				};
+
+				// 모달 animation 끝나고 border 색 지정
+				circle.addEventListener('animationend', function(e) {
+					e.target.classList.add("last");
 				});
 			};
 
