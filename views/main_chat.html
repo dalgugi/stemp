@@ -98,16 +98,19 @@
 			.modal *:not(i):not(span)			{font-family:"DungGeunMo", serif; font-size:17px; color:#7E7E7E;}
 			.modal-content						{position:relative; margin:0 auto; padding:30px; width:620px; background-color:#E3F0F2; box-sizing:border-box; border-radius:10px; text-align:center;}
 			.modal button						{padding:7px 16px;}
-			.modal .close						{position:absolute; top:15px; right:15px; font-size:30px;}
-			.modal .title-area					{display:inline-block; margin-bottom:10px; width:437px;}
+			.modal .close						{position:fixed; top:113px; right:224px; font-size:30px;}
+			.modal .title-area					{display:inline-block; margin-bottom:15px; width:437px;}
 			.modal .title-area p				{float:left; margin:5px 0 20px 10px; font-size:21px;}
 			.modal .input-area					{margin-bottom:27px;}
 			.modal .input-area > div > div		{display:inline-block; margin-left:20px; width:437px; text-align:left;}
 			.modal .input-area label			{display:block; margin-bottom:8px;}
-			.modal .input-area input			{float:left; margin-bottom:5px; padding:10px 16px; width:370px; font-size:21px; border:none; border-radius:5px;}
-			.modal .input-area .warning			{float:right; margin-top:0; padding-right:35px;}
+			.modal .input-area input			{float:left; padding:10px 16px; width:370px; font-size:21px; border:none; border-radius:5px;}
+			.modal .input-area .warning			{float:right; margin:0 35px 10px 0; font-size:16px;}
 			.modal .input-area .confirm-area 	{position:relative; float:right; display:inline-block; margin-top:8px;}
-			.modal .more-member					{display:inline-block; margin-top:10px; width:407px;}
+			.modal .input-close					{display:inline-block; width:0;}
+			.modal .input-close img				{padding:14px 10px; width:15px; opacity:0.6;}
+			.modal .input-close:hover img		{opacity:1; cursor:pointer;}
+			.modal .more-member					{display:inline-block; margin-top:5px; width:407px;}
 			.modal .more-member span			{display:inline-block; float:left; opacity:0.6; cursor:pointer;}
 			.modal .more-member span:hover		{opacity:1;}
 			.modal .more-member span > i		{margin-right:5px; font-size:16px;}
@@ -126,7 +129,7 @@
 			/* ----팀 설정 */
 			#team-modal-content					{height:400px;}
 			/* ---- 팀 멤버 초대 */
-			#member-invite-modal-content		{height:455px;}
+			#member-invite-modal-content		{height:465px;}
 		</style>
 	</head>
 	<body>
@@ -356,7 +359,6 @@
 		<!-- 팀 멤버 초대 modal -->
 		<div id="member-invite-modal" class="modal hidden">
 			<div id="member-invite-modal-content" class="modal-content">
-				<span class="close" onclick="inviteModal.classList.add('hidden');"><i class="fas fa-times"></i></span>
 				<div class="title-area"><p>멤버 초대하기</p></div>
 				<div class="input-area">
 					<div id="form">
@@ -370,6 +372,7 @@
 										<i class="fas fa-exclamation"></i>
 									</span>
 								</div>
+								<span class="input-close"><img src="../public/icons/icon_close.png"/></span>
 								<p class="warning confirm">이미 팀에 존재하는 이메일입니다.</p>
 							</div>
 						</div>-->
@@ -384,6 +387,7 @@
 										<i class="fas fa-exclamation"></i>
 									</span>
 							</div>
+							<span class="input-close"><img src="../public/icons/icon_close.png"/></span>
 							<p class="warning confirm">이미 팀에 존재하는 이메일입니다.</p>
 						</div>
 					</div>
@@ -397,6 +401,7 @@
 										<i class="fas fa-exclamation"></i>
 									</span>
 							</div>
+							<span class="input-close"><img src="../public/icons/icon_close.png"/></span>
 							<p class="warning confirm">이미 팀에 존재하는 이메일입니다.</p>
 						</div>
 					</div>
@@ -410,6 +415,7 @@
 									<i class="fas fa-exclamation"></i>
 								</span>
 							</div>
+							<span class="input-close"><img src="../public/icons/icon_close.png"/></span>
 							<p class="warning confirm">이미 팀에 존재하는 이메일입니다.</p>
 						</div>
 					</div>
@@ -419,7 +425,7 @@
 				</div>
 				<div class="btn-area">
 					<button type="button" class="btn save-btn">초대</button>
-					<button type="button" class="btn cancel-btn">취소</button>
+					<button type="button" class="btn cancel-btn" onclick="inviteModal.classList.add('hidden');">취소</button>
 				</div>
 			</div>
 		</div>
@@ -521,7 +527,7 @@
 
 				// 모달 높이 조절
 				const modal = idSelector("member-invite-modal-content");
-				let modalHeight = modal.scrollHeight + 30;
+				let modalHeight = modal.scrollHeight + 35;
 
 				if(modalHeight < window.innerHeight * 0.75) {
 					modal.style.height = modalHeight + "px";
@@ -533,7 +539,7 @@
 
 			function inputCheckReset(obj) {
 				const confirmArea = obj.nextSibling.nextSibling;
-				const circle = obj.nextSibling.nextSibling.firstChild.nextSibling;
+				const circle = confirmArea.firstChild.nextSibling;
 
 				confirmArea.classList.remove("pass");
 				confirmArea.classList.remove("fail");
@@ -545,7 +551,7 @@
 				let dbData = "a";
 				let dbCheck = val === dbData;
 				const confirmArea = obj.nextSibling.nextSibling;
-				const circle = obj.nextSibling.nextSibling.firstChild.nextSibling;
+				const circle = confirmArea.firstChild.nextSibling;
 
 				if(dbCheck) {
 					confirmArea.classList.add("pass");
