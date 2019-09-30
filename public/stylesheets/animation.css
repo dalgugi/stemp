@@ -10,8 +10,7 @@
 .confirm-area.pass > .circle.last	{border-color:#41b4c3;}
 .confirm-area.fail > .circle.last	{border-color:rgb(220, 83, 83);}
 .confirm-area.pass > .circle,
-.confirm-area.fail > .circle
-{
+.confirm-area.fail > .circle {
 	display:inline-block;
 	width:20px;
 	height:20px;
@@ -36,8 +35,7 @@
 }
 .confirm-area.pass > .confirm,
 .confirm-area.fail > .confirm,
-.confirm-area.fail + .confirm
-{
+.confirm-area.fail + .confirm {
 	visibility:visible;
 	display:inline-block;
 	margin:4px 5px;
