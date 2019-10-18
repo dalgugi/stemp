@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link href="..\public\stylesheets\reset.css" rel="stylesheet" type="text/css" />
+	<link href="../public/icons/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css" rel="stylesheet" />
+	<style type="text/css">
+		@font-face {
+			font-family: "DungGeunMo";
+			src: url("../public/fonts/DungGeunMo.woff");
+		}
+
+		body * {
+			font-family: "DungGeunMo", serif;
+		}
+
+		section {
+			height: 90%;
+			background-color: #41b4c3;
+		}
+
+		section .logo-image {
+			position: relative;
+			text-align: center;
+			top: 20%;
+		}
+
+		section div .first-img {
+			width: 84px;
+			cursor: pointer;
+		}
+
+		section div .secend-img {
+			width: 200px;
+			padding-left: 21px;
+			cursor: pointer;
+		}
+
+		/* e-mail CSS */
+		section div.input-email {
+			position: absolute;
+			text-align: center;
+			width: 100%;
+			top: 32.5%;
+			display: table;
+		}
+
+		section div.input-email div {
+			text-align: center;
+		}
+
+		.input-email>input {
+			border: none;
+			width: 362px;
+			border-radius: 5px;
+			padding: 10px 10px 10px 15px;
+			font-size: 20px;
+			vertical-align: middle;
+		}
+
+		/* password CSS */
+		section div.input-pass {
+			position: absolute;
+			text-align: center;
+			width: 100%;
+			top: 39%;
+			display: table;
+		}
+
+		section div.input-pass div {
+			text-align: center;
+		}
+
+		.input-pass>input {
+			border: none;
+			width: 362px;
+			border-radius: 5px;
+			padding: 10px 10px 10px 15px;
+			font-size: 20px;
+			vertical-align: middle;
+		}
+
+		/* login CSS */
+		section div.login {
+			position: relative;
+			text-align: center;
+			width: 100%;
+			top: 40%;
+		}
+
+		section div.login button {
+			text-align: center;
+			width: 387px;
+			cursor: pointer;
+		}
+
+		.login>button {
+			border: none;
+			background-color: rgba(48, 142, 154, 0.6);
+			padding: 9px 17px;
+			border-radius: 5px;
+			font-size: 20px;
+			color: #E3F0F2;
+			box-shadow: inset 1px 2px 1px 0px rgba(97, 180, 191, 0.72), 2px 2px 1px 1px #227A86;
+			-webkit-box-shadow: inset 1px 2px 1px 0px rgba(97, 180, 191, 0.72), 2px 2px 1px 1px #227A86;
+			border-top: 2.5px solid #3F8E98;
+			border-left: 2.5px solid #3F8E98;
+			border-bottom: 2px solid rgba(63, 142, 152, 0.58);
+			border-right: 2px solid rgba(63, 142, 152, 0.58);
+		}
+
+		.login>button:hover {
+			background-color: rgba(48, 142, 154, 1);
+		}
+
+		::-webkit-input-placeholder {
+			color: #b3a7a7;
+		}
+
+		:-ms-input-placeholder {
+			/* Internet Explorer 10-11 */
+			color: #b3a7a7;
+		}
+
+		/* new member CSS */
+		section div.newmember {
+			position: relative;
+			text-align: center;
+			width: 100%;
+			top: 45%;
+			text-decoration: underline;
+			color: white;
+			font-size: 13px;
+			cursor: pointer;
+		}
+
+		section input {
+			position: center;
+		}
+
+
+		/* input-team CSS */
+		section div.input-team {
+			position: absolute;
+			text-align: center;
+			width: 100%;
+			top: 39%;
+		}
+
+		section div.input-team button {
+			text-align: left;
+			width: 387px;
+		}
+
+		.input-team>button {
+			border: none;
+			background-color: rgba(48, 142, 154, 0.6);
+			padding: 9px 17px;
+			border-radius: 5px;
+			font-size: 20px;
+			color: #E3F0F2;
+			font-weight: 700;
+			box-shadow: inset 1px 2px 1px 0px rgba(97, 180, 191, 0.72), 2px 2px 1px 1px #227A86;
+			-webkit-box-shadow: inset 1px 2px 1px 0px rgba(97, 180, 191, 0.72), 2px 2px 1px 1px #227A86;
+			border-top: 2.5px solid #3F8E98;
+			border-left: 2.5px solid #3F8E98;
+			border-bottom: 2px solid rgba(63, 142, 152, 0.58);
+			border-right: 2px solid rgba(63, 142, 152, 0.58);
+		}
+
+		.input-team>button:hover {
+			background-color: rgba(48, 142, 154, 1);
+		}
+
+		::-webkit-input-placeholder {
+			color: #b3a7a7;
+		}
+
+		:-ms-input-placeholder {
+			/* Internet Explorer 10-11 */
+			color: #b3a7a7;
+		}
+
+		/* Add-team CSS */
+		section div.add-team {
+			position: relative;
+			text-align: center;
+			top: 40%;
+			width: 100%;
+			color: rgba(32, 121, 130, 1);
+		}
+
+		section div.add-team div {
+			width: 387px;
+			display: inline-block;
+			text-align: left;
+		}
+
+		section div.add-team div p {
+			display: inline-block;
+			color: rgba(199, 223, 226, 0.9);
+		}
+
+		/* logout CSS */
+		section div.logout {
+			position: relative;
+			text-align: center;
+			width: 100%;
+			top: 45%;
+			text-decoration: underline;
+			color: white;
+			font-size: 13px;
+			cursor: pointer;
+		}
+
+		/* footer */
+		footer {
+			height: 10%;
+			background-color: #268c9a;
+			text-align: center;
+		}
+
+		footer p {
+			position: relative;
+			top: 45%;
+			color: #41b4c3;
+			font-size: 15px;
+		}
+
+		/* 공통 클래스 */
+		.hidden {
+			display: none !important;			
+		}
+	
+	</style>
+</head>
+
+<body>
+	<section>
+		<div class="logo-image">
+			<img src="..\public\images\logo_small.png" class="first-img" />
+			<img src="..\public\images\logo_text.png" class="secend-img" />
+		</div>
+		<div class="input-email">
+			<input type="text" name="" placeholder="id@email.com" />
+		</div>
+		<div class="input-pass">
+			<input type="text" placeholder="password" />
+		</div>
+		<div class="login">
+			<button id="login-btn">LOGIN</button>
+		</div>
+		<div class="newmember">
+			<p>회원가입</p>
+		</div>
+
+		<div class="input-team hidden">
+			<button>team chat</button>
+		</div>
+		<div class="add-team hidden">
+			<div>
+				<i class="fas fa-plus"></i>
+				<p>새로운 팀 만들기</p>
+			</div>
+		</div>
+		<div class="logout hidden">
+			<p>LOGOUT</p>
+		</div>
+	</section>
+	<footer>
+		<p>Copywriter ⓒTeam Temp All Rights reserved.</p>
+	</footer>
+
+	<script type="text/javascript">
+		let loginBtn = document.getElementById("login-btn");
+		let logoutP = document.getElementsByClassName("logout")[0];
+
+		let inputTeam = document.getElementsByClassName("input-team")[0];
+		let addTeam = document.getElementsByClassName("add-team")[0];
+		let inputPass = document.getElementsByClassName("input-pass")[0];
+		let login = document.getElementsByClassName("login")[0];
+		let newmember = document.getElementsByClassName("newmember")[0];
+		let logout = document.getElementsByClassName("logout")[0];
+
+		function LoginBtn_ButtonDown() {													
+			if (inputTeam.classList.contains("hidden")) {
+				inputTeam.classList.remove("hidden");
+				addTeam.classList.remove("hidden");
+				logout.classList.remove("hidden");
+				inputPass.classList.add("hidden");
+				login.classList.add("hidden");
+				newmember.classList.add("hidden");
+			}
+		};
+
+		function Logout_click() {																			
+			inputTeam.classList.add("hidden");
+			addTeam.classList.add("hidden");
+			logout.classList.add("hidden");
+			inputPass.classList.remove("hidden");
+			login.classList.remove("hidden");
+			newmember.classList.remove("hidden");
+		};
+
+		loginBtn.addEventListener("click", LoginBtn_ButtonDown);
+		
+		logoutP.addEventListener("click", Logout_click);
+
+	</script>
+</body>
+
+</html>
