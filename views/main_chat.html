@@ -14,7 +14,7 @@
 			/* 공통 클래스 */
 			@font-face 							{font-family:"DungGeunMo"; src:url("../public/fonts/DungGeunMo.woff");}
 			.dung-geunmo						{font-family:"DungGeunMo", serif;}
-			.hidden 							{display:none;}
+			.hidden 							{display:none!important;}
 			.visi-hidden						{visibility:hidden;}
 			.scroll								{overflow-y:auto;}
 			.profile							{border-radius:100px; cursor:pointer;}
@@ -121,6 +121,8 @@
 			.modal .btn-area .btn				{padding:10px 20px; background-color:#41b4c3; font-size:21px; color:#E3F0F2;}
 			.modal .btn-area .btn:hover			{background-color:#268c9a;}
 			.modal .btn-area .btn.save-btn		{margin-right:6px;}
+			.modal .btn-area .btn.delete-btn	{background-color:rgb(220, 83, 83);}
+			.modal .btn.delete-btn:hover		{background-color:rgb(187, 70, 70);}
 			.modal .confirm-area .circle		{position:absolute;}
 			/* ----개인 정보 설정 */
 			#my-modal-content					{height:580px;}
@@ -131,7 +133,13 @@
 			.my-modal .modify-btn				{margin-right:6px;}
 			.my-modal .profile					{width:180px;}
 			/* ----팀 설정 */
-			#team-modal-content					{height:400px;}
+			#team-modal-content					{width:550px; height:290px;}
+			#team-modal .team-name				{padding:10px 16px; width:385px; border:none; border-radius:5px; font-size:21px;}
+			.delete-team-area					{display:inline-block; margin-top:10px; width:437px;}
+			.delete-team-area span				{float:left; margin:10px 0 10px 10px; cursor:pointer;}
+			.delete-team-confirm-area			{display:inline-block; margin-bottom:27px; width:437px;}
+			.delete-team-confirm-area p			{float:left; margin:0 0 10px 10px; text-align:left;}
+			.delete-team-confirm-area .team-name{margin-bottom:20px;}
 			/* ---- 팀 멤버 초대 */
 			#member-invite-modal-content		{height:465px;}
 		</style>
@@ -360,6 +368,31 @@
 		<!-- 팀 설정 modal -->
 		<div id="team-modal" class="modal hidden">
 			<div id="team-modal-content" class="modal-content">
+				<div class="team-name-area">
+					<div class="title-area"><p>팀 이름</p></div>
+					<div class="input-area">
+						<div>
+							<div>
+								<input type="text" class="team-name" placeholder="Team Name" onfocus="inputCheckReset(this)" onfocusout="inputCheck(this)"/>
+							</div>
+						</div>
+					</div>
+					<div class="btn-area">
+						<button type="button" class="btn save-btn">저장</button>
+						<button type="button" class="btn cancel-btn" onclick="teamModal.classList.add('hidden');">취소</button>
+					</div>
+				</div>
+				<div class="delete-team-area">
+					<span class="delete-team red">팀 삭제하기...</span>
+				</div>
+				<div class="delete-team-confirm-area hidden">
+					<p class="red">팀을 삭제한 후에는 되돌릴 수 없습니다.<br/>정말 삭제하시겠습니까?</p>
+					<input type="text" class="team-name" placeholder="Team Name" onfocus="inputCheckReset(this)" onfocusout="inputCheck(this)"/>
+					<div class="btn-area">
+						<button type="button" class="btn save-btn delete-btn">삭제</button>
+						<button type="button" class="btn cancel-btn back-btn">뒤로</button>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -453,6 +486,8 @@
 
 			const teamBtn   = document.getElementsByClassName("team-setting-btn")[0];
 			const teamModal = document.getElementById("team-modal");
+			const deleteTeam = document.getElementsByClassName("delete-team")[0];
+			const backBtn   = teamModal.getElementsByClassName("back-btn")[0];
 
 			const inviteBtn   = document.getElementsByClassName("member-invite-btn")[0];
 			const inviteModal = document.getElementById("member-invite-modal");
@@ -525,6 +560,14 @@
 					circle[i].classList.remove("last");
 				};
 			};
+
+			// 팀 설정 모달 | 팀 삭제하기
+			function deleteTeamToggle() {
+				document.getElementsByClassName("delete-team-confirm-area")[0].classList.toggle("hidden");
+				document.getElementsByClassName("team-name-area")[0].classList.toggle("hidden");
+			}
+			deleteTeam.onclick = function() { deleteTeamToggle(); };
+			backBtn.onclick    = function() { deleteTeamToggle(); };
 
 			// 팀 멤버 초대 모달 | 더 초대하기 클릭시 이메일 입력 input 추가
 			function moreMember(obj) {
