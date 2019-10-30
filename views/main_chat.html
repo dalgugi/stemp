@@ -402,7 +402,7 @@
 				<div class="title-area"><p>멤버 초대하기</p></div>
 				<div class="input-area">
 					<div id="form">
-						<!--<div>
+						<!--<div class="email-input-area">
 							<div>
 								<input type="text" class="email" placeholder="id@email.com" onfocus="inputCheckReset(this)" onfocusout="inputCheck(this)"/>
 								<div class="confirm-area">
@@ -412,12 +412,12 @@
 										<i class="fas fa-exclamation"></i>
 									</span>
 								</div>
-								<span class="input-close"><img src="../public/icons/icon_close.png" alt="이메일 입력상자 없애기"/></span>
+								<span class="input-close" onclick="deleteInputBox(this)"><img src="../public/icons/icon_close.png" alt="이메일 입력상자 없애기"/></span>
 								<p class="warning confirm">이미 팀에 존재하는 이메일입니다.</p>
 							</div>
 						</div>-->
 					</div>
-					<div>
+					<div class="email-input-area">
 						<div>
 							<input type="text" class="email" placeholder="id@email.com" onfocus="inputCheckReset(this)" onfocusout="inputCheck(this)"/>
 							<div class="confirm-area">
@@ -427,11 +427,11 @@
 										<i class="fas fa-exclamation"></i>
 									</span>
 							</div>
-							<span class="input-close"><img src="../public/icons/icon_close.png" alt="이메일 입력상자 없애기"/></span>
+							<span class="input-close" onclick="deleteInputBox(this)"><img src="../public/icons/icon_close.png" alt="이메일 입력상자 없애기"/></span>
 							<p class="warning confirm">이미 팀에 존재하는 이메일입니다.</p>
 						</div>
 					</div>
-					<div>
+					<div class="email-input-area">
 						<div>
 							<input type="text" class="email" placeholder="id@email.com" onfocus="inputCheckReset(this)" onfocusout="inputCheck(this)"/>
 							<div class="confirm-area">
@@ -441,11 +441,11 @@
 										<i class="fas fa-exclamation"></i>
 									</span>
 							</div>
-							<span class="input-close"><img src="../public/icons/icon_close.png" alt="이메일 입력상자 없애기"/></span>
+							<span class="input-close" onclick="deleteInputBox(this)"><img src="../public/icons/icon_close.png" alt="이메일 입력상자 없애기"/></span>
 							<p class="warning confirm">이미 팀에 존재하는 이메일입니다.</p>
 						</div>
 					</div>
-					<div>
+					<div class="email-input-area">
 						<div>
 							<input type="text" class="email" placeholder="id@email.com" onfocus="inputCheckReset(this)" onfocusout="inputCheck(this)"/>
 							<div class="confirm-area">
@@ -455,7 +455,7 @@
 									<i class="fas fa-exclamation"></i>
 								</span>
 							</div>
-							<span class="input-close"><img src="../public/icons/icon_close.png" alt="이메일 입력상자 없애기"/></span>
+							<span class="input-close" onclick="deleteInputBox(this)"><img src="../public/icons/icon_close.png" alt="이메일 입력상자 없애기"/></span>
 							<p class="warning confirm">이미 팀에 존재하는 이메일입니다.</p>
 						</div>
 					</div>
@@ -613,6 +613,15 @@
 				circle.addEventListener('animationend', function(e) {
 					e.target.classList.add("last");
 				});
+			};
+
+			// 팀 멤버 초대 모달 | 이메일 input X 눌렀을 때
+			function deleteInputBox(obj) {
+				let emailInputArea = document.querySelectorAll(".email-input-area");
+				if(emailInputArea.length > 1) {
+					let deleteEl = obj.parentNode.parentNode;
+					deleteEl.parentNode.removeChild(deleteEl);
+				};
 			};
 
 		</script>
