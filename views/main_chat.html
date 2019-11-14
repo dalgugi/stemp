@@ -142,6 +142,9 @@
 			.delete-team-confirm-area .team-name{margin-bottom:20px;}
 			/* ---- 팀 멤버 초대 */
 			#member-invite-modal-content		{height:465px;}
+			/* ---- 공식 대화목록 대화 추가하기 */
+			#add-chat-modal-content				{height:320px;}
+			#add-chat-modal .chat-title-input	{margin-bottom:20px;}
 		</style>
 	</head>
 	<body>
@@ -182,7 +185,7 @@
 							<li>기획팀</li>
 							<li>컨텐츠팀</li>
 							<li>인사관리팀</li>
-							<li><i class="fas fa-plus"></i>대화 추가하기</li>
+							<li class="add-chat"><i class="fas fa-plus"></i>대화 추가하기</li>
 						</ul>
 					</li>
 					<li>
@@ -195,7 +198,6 @@
 							<li>박와조스키</li>
 							<li>안보헤미안</li>
 							<li>놈팽이팸</li>
-							<li><i class="fas fa-plus"></i>대화 추가하기</li>
 						</ul>
 					</li>
 				</ul>
@@ -470,6 +472,27 @@
 			</div>
 		</div>
 
+		<!-- 공식 대화목록 대화 추가 modal -->
+		<div id="add-chat-modal" class="modal hidden">
+			<div id="add-chat-modal-content" class="modal-content">
+				<div class="title-area"><p>대화 추가하기</p></div>
+				<div class="input-area">
+					<div>
+						<div class="chat-title-input">
+							<input type="text" class="team-name" placeholder="Chat Title" onfocus="inputCheckReset(this)" onfocusout="inputCheck(this)"/>
+						</div>
+						<div>
+							<input type="text" class="team-name" placeholder="Chat Member" onfocus="inputCheckReset(this)" onfocusout="inputCheck(this)"/>
+						</div>
+					</div>
+				</div>
+				<div class="btn-area">
+					<button type="button" class="btn save-btn">저장</button>
+					<button type="button" class="btn cancel-btn" onclick="addChatModal.classList.add('hidden');">취소</button>
+				</div>
+			</div>
+		</div>
+
 		<script type="text/javascript">
 
 			/* Common js */
@@ -491,6 +514,9 @@
 
 			const inviteBtn   = document.getElementsByClassName("member-invite-btn")[0];
 			const inviteModal = document.getElementById("member-invite-modal");
+
+			const addChat = document.getElementsByClassName("add-chat")[0];
+			const addChatModal = document.getElementById("add-chat-modal");
 
 
 			// 왼쪽 채팅 리스트 접기/펼치기
@@ -550,7 +576,9 @@
 					teamModal.classList.add("hidden");
 				} else if(e.target === inviteModal) {
 					inviteModal.classList.add("hidden");
-				};
+				} else if(e.target === addChatModal) {
+					addChatModal.classList.add("hidden");
+				}
 			};
 
 			// 모달 animation 전 border 보이지 않게 색 지정
@@ -622,6 +650,11 @@
 					let deleteEl = obj.parentNode.parentNode;
 					deleteEl.parentNode.removeChild(deleteEl);
 				};
+			};
+
+			// 공식 대화목록 | 대화추가하기
+			addChat.onclick = function() {
+				addChatModal.classList.remove("hidden");
 			};
 
 		</script>
